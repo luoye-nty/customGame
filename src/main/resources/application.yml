@@ -19,3 +19,5 @@ spring:
 upload_url:
   url: F:/testimage/
   ip: F:/
+
+test: 123
