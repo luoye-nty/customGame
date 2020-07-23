@@ -1,0 +1,21 @@
+server:
+  port: 18023
+
+mybatis:
+  mapper-locations: classpath:mapper/*/*.xml
+  type-aliases-package: cn.luoye.game.MonopolyGame.**.entity
+  configuration:
+    map-underscore-to-camel-case: true
+
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: admin123456
+    url: jdbc:mysql://localhost:3306/monopoly_game?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=GMT%2B8
+
+
+upload_url:
+  url: F:/testimage/
+  ip: F:/
