@@ -27,7 +27,7 @@ public class UserInfoController {
      * 查询所有用户
      * @return
      */
-    @PostMapping("findall")
+    @PostMapping("query_list")
     public List<UserInfo> findAll(){
         return userInfoService.queryAllUser();
     }
