@@ -41,14 +41,14 @@ public class UploadImageController {
         // String fileName = uuid.toString() + originalFilename;
         String extendName = originalFilename.substring(originalFilename.lastIndexOf("."), originalFilename.length());
         String fileName = uuid.toString() + extendName;
-        File dir = new File(path, fileName);
+        File dirr = new File(path, fileName);
         File filepath = new File(path);
         if (!filepath.exists()) {
             filepath.mkdirs();
         }
         GameResponse gameResponse = new GameResponse();
         try {
-            file.transferTo(dir);
+            file.transferTo(dirr);
             return gameResponse.message(path + fileName);
         } catch (IOException e) {
             e.printStackTrace();
