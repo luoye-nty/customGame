@@ -91,6 +91,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
                 gameResponse.code(CodeMessage.SUCCESS_CODE);
                 gameResponse.message("登陆成功");
                 gameResponse.data(user);
+                gameResponse.put("token","abcde");
             }else{
                 gameResponse.code(CodeMessage.ERROR_CODE);
                 gameResponse.message("用户名密码错误");
