@@ -100,7 +100,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
                 gameResponse.data(user);
                 String token = UUID.randomUUID().toString();
                 token =userInfo.getUsername()+" "+token;
-                redisUtil.set(userInfo.getUsername()+"token",token,60);
+                redisUtil.set(userInfo.getUsername()+"token",token,36000);
                 gameResponse.put("token",token);
             }else{
                 gameResponse.code(CodeMessage.ERROR_CODE);

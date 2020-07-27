@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.luoye.game.MonopolyGame.roomInfo.dao.RoomInfoMapper">
+
+    <select id="queryAllRoom" resultType="cn.luoye.game.MonopolyGame.roomInfo.entity.RoomInfo">
+        select * from room_info;
+    </select>
+
+    <select id="queryFreeRoom" resultType="cn.luoye.game.MonopolyGame.roomInfo.entity.RoomInfo">
+            select * from room_info where player_total &lt; 5;
+        </select>
+
+    <select id="queryRoomById" resultType="cn.luoye.game.MonopolyGame.roomInfo.entity.RoomInfo">
+            select * from room_info where room_id = #{roomId};
+        </select>
+
+    <update id="joinRoom" parameterType="cn.luoye.game.MonopolyGame.roomInfo.entity.RoomInfo">
+        update room_info set player_total = #{param.playerTotal}
+        <if test="param.playerOne!=null">
+            ,player_one = #{param.playerOne}
+        </if>
+        <if test="param.playerTwo!=null">
+            ,player_two = #{param.playerTwo}
+        </if>
+        <if test="param.playerThree!=null">
+            ,player_three = #{param.playerThree}
+        </if>
+        <if test="param.playerFour!=null">
+            ,player_four = #{param.playerFour}
+        </if>
+        <if test="param.playerFive!=null">
+            ,player_five = #{param.playerFive}
+        </if>
+        where room_id = #{param.roomId};
+    </update>
+</mapper>
