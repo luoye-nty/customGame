@@ -5,8 +5,11 @@ import cn.luoye.game.MonopolyGame.userInfo.dao.UserInfoMapper;
 import cn.luoye.game.MonopolyGame.userInfo.service.IUserInfoService;
 import cn.luoye.game.common.config.CodeMessage;
 import cn.luoye.game.common.config.GameResponse;
+import cn.luoye.game.common.config.RedisConfig;
 import cn.luoye.game.common.utils.MD5Util;
+import cn.luoye.game.common.utils.RedisUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -15,12 +18,16 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author nitianye
  */
 @Service
 public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> implements IUserInfoService {
+
+    @Autowired
+    RedisUtil redisUtil;
 
     private static SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式  HH:mm:ss
 
@@ -91,7 +98,10 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
                 gameResponse.code(CodeMessage.SUCCESS_CODE);
                 gameResponse.message("登陆成功");
                 gameResponse.data(user);
-                gameResponse.put("token","abcde");
+                String token = UUID.randomUUID().toString();
+                token =userInfo.getUsername()+" "+token;
+                redisUtil.set(userInfo.getUsername()+"token",token,60);
+                gameResponse.put("token",token);
             }else{
                 gameResponse.code(CodeMessage.ERROR_CODE);
                 gameResponse.message("用户名密码错误");

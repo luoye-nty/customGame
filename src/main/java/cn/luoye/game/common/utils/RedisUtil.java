@@ -13,12 +13,12 @@ import org.springframework.util.CollectionUtils;
 /**
  * Redis工具类
  *
- * @author ZENG.XIAO.YAN
- * @date 2018年6月7日
+ * @author nitianye
+ * @date 2020年7月27日
  */
 
 @Component
-public final class RedisUtil {
+public class RedisUtil {
 
 
     @Autowired

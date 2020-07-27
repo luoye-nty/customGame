@@ -18,6 +18,7 @@ public class ErrorController {
     @RequestMapping("token")
     public GameResponse tokenError(){
         GameResponse gameResponse = new GameResponse();
+        gameResponse.code(-1);
         return gameResponse.message("token error");
     }
 }
